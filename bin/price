@@ -33,7 +33,6 @@ end.parse!
 trap("INT") { puts; exit 0 }
 
 if live
-  cursor = TTY::Cursor
   loop do
     system 'clear' or system 'cls'
     prices = Price.prices(limit)

@@ -26,6 +26,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'terminal-table'
   spec.add_runtime_dependency 'http'
   spec.add_runtime_dependency 'activesupport'
-  spec.add_runtime_dependency 'tty-cursor'
 
 end
