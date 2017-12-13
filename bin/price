@@ -1,0 +1,28 @@
+#! /usr/bin/env ruby
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'price'
+
+limit = 10
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: price [options]'
+
+  opts.on('-v', '--version', 'Show the current version and exit.') do
+    puts Price::VERSION
+    exit 0
+  end
+
+  opts.on('-l', '--limit=<LIMIT>',
+    'The maximum amount of entries to show (Default: 10)') do |i|
+    limit = i
+  end
+
+  opts.on_tail('-h', '--help', 'Show this help message and exit.') do
+    puts opts
+    exit 0
+  end
+
+end.parse!
+
+puts Price.prices(limit)
