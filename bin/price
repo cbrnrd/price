@@ -4,6 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'price'
 
 limit = 10
+live = false
 
 OptionParser.new do |opts|
   opts.banner = 'Usage: price [options]'
@@ -18,11 +19,27 @@ OptionParser.new do |opts|
     limit = i
   end
 
+  opts.on('--live', 'Show live prices instead of one fixed one.') do
+    live = true
+  end
+
   opts.on_tail('-h', '--help', 'Show this help message and exit.') do
     puts opts
     exit 0
   end
 
 end.parse!
+
+trap("INT") { puts; exit 0 }
+
+if live
+  cursor = TTY::Cursor
+  loop do
+    system 'clear' or system 'cls'
+    prices = Price.prices(limit)
+    print prices
+    sleep 4
+  end
+end
 
 puts Price.prices(limit)

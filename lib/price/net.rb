@@ -28,9 +28,9 @@ module Price
         green = '#2ecc71'
         red   = '#e74c3c'
 
-        one_h_change  = n['percent_change_1h'] + '%'
-        day_change = n['percent_change_24h'] + '%'
-        week_change  = n['percent_change_7d'] + '%'
+        one_h_change = n['percent_change_1h']  + '%'
+        day_change   = n['percent_change_24h'] + '%'
+        week_change  = n['percent_change_7d']  + '%'
 
         # Do some color stuff here
         if one_h_change.include?('-')
@@ -59,5 +59,5 @@ module Price
     end
     return t
   end
-  
+
 end
